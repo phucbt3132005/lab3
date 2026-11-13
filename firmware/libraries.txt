@@ -1,0 +1,4 @@
+Adafruit BMP085 Library
+Adafruit BusIO
+PubSubClient
+ArduinoJson

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "Runner Monitoring Project",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -30, "left": 0, "attrs": {} },
+    {
+      "type": "board-bmp180",
+      "id": "bmp1",
+      "top": -23.64,
+      "left": 286.94,
+      "rotate": 180,
+      "attrs": { "temperature": "24", "pressure": "101325" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 198, "left": 339.8, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 119.15,
+      "left": 297.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 278.4,
+      "left": -144,
+      "rotate": 270,
+      "attrs": { "volume": "0.25", "mode": "smooth" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "bmp1:SCL", "esp:D22", "yellow", [] ],
+    [ "esp:D26", "r1:1", "orange", [] ],
+    [ "r1:2", "led1:A", "orange", [] ],
+    [ "esp:D27", "bz1:2", "green", [ "h0" ] ],
+    [ "esp:GND.2", "bz1:1", "black", [ "h-43.4", "v217" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "h-14.6", "v130.6" ] ],
+    [ "bmp1:VCC", "esp:3V3", "red", [ "h-153.6", "v115.2" ] ],
+    [ "bmp1:GND", "esp:GND.1", "black", [ "h-163.2", "v105.41" ] ],
+    [ "esp:D21", "bmp1:SDA", "green", [ "h119.5", "v-42.5", "h19.2" ] ]
+  ],
+  "serialMonitor": { "convertEol": true, "display": "terminal", "newline": "lf" },
+  "dependencies": {}
+}
